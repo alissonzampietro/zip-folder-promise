@@ -26,15 +26,28 @@ $ npm install --save zip-folder-promise
 ```
 
 ## Usage
+```typescript
+zipFolder(
+  inputDir: string,
+  outputFileName: string,
+  format?: 'tar' | 'zip'
+): Promise<string>
+```
 
+### Example:
 ```javascript
 const zipFolderPromise = require('zip-folder-promise');
 
 async function yourAsyncFn() {
   try {
     // ..
-    const zipFolderMsg = await zipFolder('folderName', 'zipName');
+    // Using default ZIP format
+    const zipFolderMsg = await zipFolder('dirName', 'zipName');
     console.log(zipFolderMsg);
+
+    // Using alternate TAR format
+    const tarFolderMsg = await zipFolder('dirName', 'tarName', 'tar');
+    console.log(tarFolderMsg);
     // ..
   }
 
