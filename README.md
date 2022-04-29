@@ -30,7 +30,8 @@ $ npm install --save zip-folder-promise
 zipFolder(
   inputDir: string,
   outputFileName: string,
-  format?: 'tar' | 'zip'
+  format?: 'tar' | 'zip',
+  subDirectory: string
 ): Promise<string>
 ```
 
@@ -44,6 +45,10 @@ async function yourAsyncFn() {
     // Using default ZIP format
     const zipFolderMsg = await zipFolder('dirName', 'zipName');
     console.log(zipFolderMsg);
+
+    // Using a subDirectory to wrap your files
+    const zipFolderMsgSubdirectory = await zipFolder('dirName', 'zipName', 'zip', 'subdirectoryFolder');
+    console.log(zipFolderMsgSubdirectory);
 
     // Using alternate TAR format
     const tarFolderMsg = await zipFolder('dirName', 'tarName', 'tar');
