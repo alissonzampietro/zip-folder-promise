@@ -1,6 +1,6 @@
 {
   "name": "zip-folder-promise",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Use archiver to zip a folder using promises instead of callbacks",
   "homepage": "https://github.com/swordf1zh/zip-folder-promise#readme",
   "author": "Ricardo Tribaldos <ricardo@tribaldos.org> (http://ricardo.tribaldos.org)",

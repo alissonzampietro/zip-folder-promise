@@ -1,7 +1,7 @@
 const fs = require('fs');
 const archiver = require('archiver');
 
-function zipFolderPromise(dirname, outputFile, format = 'zip') {
+function zipFolderPromise(dirname, outputFile, format = 'zip', subDirectory) {
   return new Promise((resolve, reject) => {
     let archiveOpts;
     switch (format) {
@@ -34,7 +34,11 @@ function zipFolderPromise(dirname, outputFile, format = 'zip') {
     });
 
     archive.pipe(output);
-    archive.directory(dirname, false);
+    if(subDirectory && (typeof subDirectory == 'string' || subDirectory instanceof String)) {
+      archive.directory(dirname, subDirectory);
+    }else {
+      archive.directory(dirname, false);
+    }
     archive.finalize();
   });
 }
