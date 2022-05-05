@@ -3,17 +3,14 @@
   <a href="https://www.npmjs.com/package/zip-folder-promise" target="_blank">
     <img alt="Version" src="https://img.shields.io/npm/v/zip-folder-promise.svg">
   </a>
-  <a href="https://github.com/swordf1zh/zip-folder-promise#readme" target="_blank">
+  <a href="https://github.com/tribal2/zip-folder-promise#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
-  <a href="https://github.com/swordf1zh/zip-folder-promise/graphs/commit-activity" target="_blank">
+  <a href="https://github.com/tribal2/zip-folder-promise/graphs/commit-activity" target="_blank">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
   </a>
-  <a href="https://github.com/swordf1zh/zip-folder-promise/blob/master/LICENSE" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/github/license/swordf1zh/zip-folder-promise" />
-  </a>
-  <a href="https://twitter.com/r\_tribaldos" target="_blank">
-    <img alt="Twitter: r\_tribaldos" src="https://img.shields.io/twitter/follow/r_tribaldos.svg?style=social" />
+  <a href="https://github.com/tribal2/zip-folder-promise/blob/master/LICENSE" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/github/license/tribal2/zip-folder-promise" />
   </a>
 </p>
 
@@ -30,7 +27,8 @@ $ npm install --save zip-folder-promise
 zipFolder(
   inputDir: string,
   outputFileName: string,
-  format?: 'tar' | 'zip'
+  format?: 'tar' | 'zip',
+  subDirectory?: string
 ): Promise<string>
 ```
 
@@ -44,6 +42,10 @@ async function yourAsyncFn() {
     // Using default ZIP format
     const zipFolderMsg = await zipFolder('dirName', 'zipName');
     console.log(zipFolderMsg);
+
+    // Using a subDirectory to wrap your files
+    const zipFolderMsgSubdirectory = await zipFolder('dirName', 'zipName', 'zip', 'subdirectoryFolder');
+    console.log(zipFolderMsgSubdirectory);
 
     // Using alternate TAR format
     const tarFolderMsg = await zipFolder('dirName', 'tarName', 'tar');
@@ -62,8 +64,11 @@ async function yourAsyncFn() {
 
 👤 **Ricardo Tribaldos (https://barustudio.com)**
 
-* Github: [@swordf1zh](https://github.com/swordf1zh)
-* Twitter: [@r_tribaldos](https://twitter.com/r_tribaldos)
+* Github: [@tribal2](https://github.com/tribal2)
+* Twitter: [@r_tribaldos](https://twitter.com/r_tribaldos) 
+  <a href="https://twitter.com/r\_tribaldos" target="_blank">
+    <img alt="Twitter: r\_tribaldos" src="https://img.shields.io/twitter/follow/r_tribaldos.svg?style=social" />
+  </a>
 * LinkedIn: [@rtribaldos](https://linkedin.com/in/rtribaldos)
 
 ## Show your support
@@ -72,8 +77,8 @@ Give a ⭐️ if this project helped you!
 
 ## 📝 License
 
-Copyright © 2020 [Ricardo Tribaldos (https://barustudio.com)](https://github.com/swordf1zh).<br />
-This project is [MIT](https://github.com/swordf1zh/zip-folder-promise/blob/master/LICENSE) licensed.
+Copyright © 2022 [Ricardo Tribaldos (https://barustudio.com)](https://github.com/tribal2).<br />
+This project is [MIT](https://github.com/tribal2/zip-folder-promise/blob/master/LICENSE) licensed.
 
 ***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

@@ -1,41 +1,49 @@
 const fs = require('fs');
 const archiver = require('archiver');
 
-function zipFolderPromise(dirname, outputFile, format = 'zip') {
+function zipFolderPromise(dirname, outputFile, format = 'zip', subDirectory = '') {
   return new Promise((resolve, reject) => {
-    let archiveOpts;
-    switch (format) {
-      case 'zip':
-        archiveOpts = {
-          zlib: { level: 9 },
-        };
-        break;
+    try {
+      if (!fs.existsSync(dirname)) {
+        throw new Error(`Error: '${dirname}' does not exist`);
+      }
 
-      case 'tar':
-        archiveOpts = {
-          gzip: true,
-          gzipOptions: { level: 9 },
-        };
-      break;
+      let archiveOpts;
+      switch (format) {
+        case 'zip':
+          archiveOpts = {
+            zlib: { level: 9 },
+          };
+          break;
 
-      default:
-        return reject("Error: Only 'zip' and 'tar' formats are supported.");
-    }
+        case 'tar':
+          archiveOpts = {
+            gzip: true,
+            gzipOptions: { level: 9 },
+          };
+          break;
 
-    const output = fs.createWriteStream(outputFile);
-    const archive = archiver(format, archiveOpts);
+        default:
+          throw new Error("Error: Only 'zip' and 'tar' formats are supported.");
+      }
 
-    output.on('close', () => {
-      resolve(`${archive.pointer()} bytes written`);
-    });
+      const output = fs.createWriteStream(outputFile);
+      const archive = archiver(format, archiveOpts);
 
-    archive.on('error', err => {
+      output.on('close', () => {
+        resolve(`${archive.pointer()} bytes written`);
+      });
+
+      archive.on('error', (err) => {
+        throw err;
+      });
+
+      archive.pipe(output);
+      archive.directory(dirname, subDirectory || false);
+      archive.finalize();
+    } catch (err) {
       reject(err);
-    });
-
-    archive.pipe(output);
-    archive.directory(dirname, false);
-    archive.finalize();
+    }
   });
 }
 
