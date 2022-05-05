@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  nodejs:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    restart: unless-stopped
+    volumes:
+      - "..:/zip-folder-promise:rw"
+      - "/zip-folder-promise/node_modules"
+    command: sleep infinity
