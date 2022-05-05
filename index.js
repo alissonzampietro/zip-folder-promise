@@ -4,6 +4,10 @@ const archiver = require('archiver');
 function zipFolderPromise(dirname, outputFile, format = 'zip', subDirectory = '') {
   return new Promise((resolve, reject) => {
     try {
+      if (!fs.existsSync(dirname)) {
+        throw new Error(`Error: '${dirname}' does not exist`);
+      }
+
       let archiveOpts;
       switch (format) {
         case 'zip':
