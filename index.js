@@ -1,7 +1,7 @@
 const fs = require('fs');
 const archiver = require('archiver');
 
-function zipFolderPromise(dirname, outputFile, format = 'zip', subDirectory) {
+function zipFolderPromise(dirname, outputFile, format = 'zip', subDirectory = '') {
   return new Promise((resolve, reject) => {
     let archiveOpts;
     switch (format) {
@@ -16,10 +16,10 @@ function zipFolderPromise(dirname, outputFile, format = 'zip', subDirectory) {
           gzip: true,
           gzipOptions: { level: 9 },
         };
-      break;
+        break;
 
       default:
-        return reject("Error: Only 'zip' and 'tar' formats are supported.");
+        reject(new Error("Error: Only 'zip' and 'tar' formats are supported."));
     }
 
     const output = fs.createWriteStream(outputFile);
@@ -29,16 +29,12 @@ function zipFolderPromise(dirname, outputFile, format = 'zip', subDirectory) {
       resolve(`${archive.pointer()} bytes written`);
     });
 
-    archive.on('error', err => {
+    archive.on('error', (err) => {
       reject(err);
     });
 
     archive.pipe(output);
-    if(subDirectory && (typeof subDirectory == 'string' || subDirectory instanceof String)) {
-      archive.directory(dirname, subDirectory);
-    }else {
-      archive.directory(dirname, false);
-    }
+    archive.directory(dirname, subDirectory || false);
     archive.finalize();
   });
 }
