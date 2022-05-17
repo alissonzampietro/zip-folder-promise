@@ -2,12 +2,12 @@
   "name": "zip-folder-promise",
   "version": "1.2.0",
   "description": "Use archiver to zip a folder using promises instead of callbacks",
-  "homepage": "https://github.com/swordf1zh/zip-folder-promise#readme",
+  "homepage": "https://github.com/tribal2/zip-folder-promise#readme",
   "author": "Ricardo Tribaldos <ricardo@tribaldos.org> (http://ricardo.tribaldos.org)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/swordf1zh/zip-folder-promise.git"
+    "url": "git+https://github.com/tribal2/zip-folder-promise.git"
   },
   "keywords": [
     "archiver",
@@ -16,13 +16,18 @@
     "zip-folder"
   ],
   "bugs": {
-    "url": "https://github.com/swordf1zh/zip-folder-promise/issues"
+    "url": "https://github.com/tribal2/zip-folder-promise/issues"
   },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "archiver": "^5.1.0"
+    "archiver": "^5.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.14.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
   }
 }
